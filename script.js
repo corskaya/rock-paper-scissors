@@ -33,7 +33,7 @@ function startGame(userChoice) {
   computerChoiceDiv.textContent = 'Computer choice: ' + options[computerChoice]
   bodyElement.appendChild(computerChoiceDiv)
 
-  if (userChoice === computerChoice) {
+  if (userChoice == computerChoice) {
     renderWinner.textContent = 'Draw!'
   } else if ((userChoice == 0 && computerChoice == 2) || (userChoice == 1 && computerChoice == 0) || (userChoice == 2 && computerChoice == 1)) {
     renderWinner.textContent = 'You win :)'
