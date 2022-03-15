@@ -5,43 +5,42 @@ const btnScissors = document.querySelector('#btn-scissors')
 const userChoiceDiv = document.querySelector('#user-choice')
 const bodyElement = document.querySelector('body')
 
+const options = ['Rock', 'Paper', 'Scissors']
+
 btnRock.addEventListener('click', function (e) {
-  userChoiceDiv.textContent = e.target.textContent
-  startGame()
+  userChoiceDiv.choice = e.target.getAttribute('val')
+  startGame(userChoiceDiv.choice)
 })
 
 btnPaper.addEventListener('click', function (e) {
-  userChoiceDiv.textContent = e.target.textContent
-  startGame()
+  userChoiceDiv.choice = e.target.getAttribute('val')
+  startGame(userChoiceDiv.choice)
 })
 
 btnScissors.addEventListener('click', function (e) {
   userChoiceDiv.textContent = e.target.textContent
-  startGame()
+  userChoiceDiv.choice = e.target.getAttribute('val')
+  startGame(userChoiceDiv.choice)
 })
 
 const computerChoiceDiv = document.createElement('p')
 const renderWinner = document.createElement('p')
-const choices = ['Rock', 'Paper', 'Scissors']
 
-function startGame() {
+function startGame(userChoice) {
   computerChoiceDiv.innerHTML = ''
+  const computerChoice = Math.floor(Math.random() * 3)
 
-  const index = Math.floor(Math.random() * 3)
-  const userChoice = userChoiceDiv.textContent
-  const computerChoice = choices[index]
-
-  computerChoiceDiv.textContent = 'Computer choice: ' + computerChoice
+  computerChoiceDiv.textContent = 'Computer choice: ' + options[computerChoice]
   bodyElement.appendChild(computerChoiceDiv)
 
-  if (userChoice === computerChoice) {
+  if (userChoice == computerChoice) {
     renderWinner.textContent = 'Draw!'
-  } else if ((userChoice === 'Rock' && computerChoice === 'Scissors') || (userChoice === 'Paper' && computerChoice === 'Rock') || (userChoice === 'Scissors' && computerChoice === 'Paper')) {
+  } else if ((userChoice == 0 && computerChoice == 2) || (userChoice == 1 && computerChoice == 0) || (userChoice == 2 && computerChoice == 1)) {
     renderWinner.textContent = 'You win :)'
   } else {
     renderWinner.textContent = 'You lose :('
   }
 
   bodyElement.appendChild(renderWinner)
-  userChoiceDiv.textContent = 'Your choice: ' + userChoice
+  userChoiceDiv.textContent = 'Your choice: ' + options[userChoice]
 }
